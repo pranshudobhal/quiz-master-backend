@@ -2,31 +2,29 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 const allQuizzez = require('./quiz.data');
 
+const optionSchema = new Schema({
+  text: String,
+  isRight: Boolean,
+});
+
 const questionSchema = new Schema({
   question: String,
   points: Number,
   negativePoints: Number,
-  options: [
-    {
-      _id: { type: Schema.Types.ObjectId, ref: 'Option' },
-    },
-  ],
-});
-
-const optionSchema = new Schema({
-  text: String,
-  isRight: Boolean,
+  options: {
+    type: [optionSchema],
+    default: undefined,
+  },
 });
 
 const quizSchema = new Schema({
   name: String,
   playTime: Number,
   totalPoints: Number,
-  questions: [
-    {
-      _id: { type: Schema.Types.ObjectId, ref: 'Question' },
-    },
-  ],
+  questions: {
+    type: [questionSchema],
+    default: undefined,
+  },
 });
 
 const Quiz = mongoose.model('Quiz', quizSchema);

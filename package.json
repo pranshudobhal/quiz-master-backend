@@ -4,7 +4,8 @@
   "description": "Backend for Quiz Master app",
   "main": "index.js",
   "scripts": {
-    "start": "node index"
+    "start": "node index",
+    "dev": "nodemon index"
   },
   "repository": {
     "type": "git",

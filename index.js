@@ -1,7 +1,10 @@
 const express = require('express');
+require('dotenv').config();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const { connectToDatabase } = require('./database/database');
+const { addQuizToCollection } = require('./models/quiz.model');
 
 const PORT = 3000;
 const app = express();
@@ -11,10 +14,17 @@ app.use(cors());
 
 /**
  * TODO:
- * 1. Connect to Database
+ * 1. Connect to Database -- DONE
  * 2. Auth handler
  * 3. Individual routes
  */
+
+connectToDatabase();
+
+/**
+ * Run addQuizToCollection() only when adding new data to quiz JSON
+ */
+addQuizToCollection();
 
 app.get('/', (req, res) => {
   res.json({ success: true, message: 'Quiz Master API' });

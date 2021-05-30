@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const { connectToDatabase } = require('./database/database');
 const { addQuizToCollection } = require('./models/quiz.model');
+const quizRouter = require('./routers/quiz.router');
 
 const PORT = process.env.PORT;
 const app = express();
@@ -25,6 +26,8 @@ connectToDatabase();
  * Run addQuizToCollection() only when adding new data to quiz JSON
  */
 // addQuizToCollection();
+
+app.use('/quiz', quizRouter);
 
 app.get('/', (req, res) => {
   res.json({ success: true, message: 'Quiz Master API' });

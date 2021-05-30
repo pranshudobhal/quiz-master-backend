@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const allQuizzez = require('./quiz.data');
+const allQuizzes = require('./quiz.data');
 
 const optionSchema = new Schema({
   text: String,
@@ -31,7 +31,7 @@ const Quiz = mongoose.model('Quiz', quizSchema);
 
 async function addQuizToCollection() {
   try {
-    allQuizzez.forEach(async (quiz) => {
+    allQuizzes.forEach(async (quiz) => {
       const newQuiz = new Quiz(quiz);
       await newQuiz.save();
     });

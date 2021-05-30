@@ -1,4 +1,4 @@
-const allQuizzez = [
+const allQuizzes = [
   {
     id: '1',
     name: 'Marvel Cinematic Universe',
@@ -192,4 +192,4 @@ const allQuizzez = [
   },
 ];
 
-module.exports = allQuizzez;
+module.exports = allQuizzes;

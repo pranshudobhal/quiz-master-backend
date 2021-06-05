@@ -1,45 +1,39 @@
 const { User } = require('../models/user.model');
 
-/**
- * TODO:
- * Functionality has not been implemented
- */
-
 const getUser = async (req, res) => {
   try {
-    /**
-     * Find user details, see if its reqd
-     * Take out find user in a middleware
-     */
-    const user = await User.find({});
+    const { userID } = req.user;
+    const user = await User.findById(userID).select('_id email firstName lastName');
     res.json({ success: true, user });
   } catch (error) {
-    res.json({ success: false, message: 'Error retrieving quizzes', errorMessage: error.message });
+    res.json({ success: false, message: 'Error retrieving user data', errorMessage: error.message });
   }
 };
 
+/**
+ * TODO:
+ * 1. Find and update user data
+ */
 const updateUserData = async (req, res) => {
   try {
-    /**
-     * Take user and the data to be updated
-     * Update the data in BE
-     */
-    const user = await User.find({});
+    const { userID } = req.user;
+    const user = await User.findById(userID);
     res.json({ success: true, user });
   } catch (error) {
-    res.json({ success: false, message: 'Error retrieving quizzes', errorMessage: error.message });
+    res.json({ success: false, message: 'Error updating user data', errorMessage: error.message });
   }
 };
 
+/**
+ * TODO:
+ * 1. Find and delete user
+ */
 const deleteUser = async (req, res) => {
   try {
-    /**
-     * Delete the user from BE
-     */
     const user = await User.find({});
     res.json({ success: true, user });
   } catch (error) {
-    res.json({ success: false, message: 'Error retrieving quizzes', errorMessage: error.message });
+    res.json({ success: false, message: 'Error deleting user', errorMessage: error.message });
   }
 };
 

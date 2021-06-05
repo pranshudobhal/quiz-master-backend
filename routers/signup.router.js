@@ -2,10 +2,8 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const { User } = require('../models/user.model');
-const { getUser, updateUserData, deleteUser } = require('../controllers/user.controller');
+const { createNewUser } = require('../controllers/signup.controller');
 
-router.get('/', getUser);
-router.post('/', updateUserData);
-router.delete('/', deleteUser);
+router.post('/', createNewUser);
 
 module.exports = router;

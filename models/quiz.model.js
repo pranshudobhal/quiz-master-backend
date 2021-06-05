@@ -3,27 +3,50 @@ const { Schema } = mongoose;
 const allQuizzes = require('./quiz.data');
 
 const optionSchema = new Schema({
-  text: String,
-  isRight: Boolean,
+  text: {
+    type: String,
+    required: true,
+  },
+  isRight: {
+    type: Boolean,
+    required: true,
+  },
 });
 
 const questionSchema = new Schema({
-  question: String,
-  points: Number,
+  question: {
+    type: String,
+    required: true,
+  },
+  points: {
+    type: Number,
+    required: true,
+  },
   negativePoints: Number,
   options: {
     type: [optionSchema],
     default: undefined,
+    required: true,
   },
 });
 
 const quizSchema = new Schema({
-  name: String,
-  playTime: Number,
-  totalPoints: Number,
+  name: {
+    type: String,
+    required: true,
+  },
+  playTime: {
+    type: Number,
+    required: true,
+  },
+  totalPoints: {
+    type: Number,
+    required: true,
+  },
   questions: {
     type: [questionSchema],
     default: undefined,
+    required: true,
   },
 });
 
@@ -35,9 +58,9 @@ async function addQuizToCollection() {
       const newQuiz = new Quiz(quiz);
       await newQuiz.save();
     });
-    console.log('Data added successfully to database');
+    console.log('Quiz Data added successfully to database');
   } catch (error) {
-    console.log('Error adding data to database');
+    console.log('Error adding quiz data to database');
   }
 }
 

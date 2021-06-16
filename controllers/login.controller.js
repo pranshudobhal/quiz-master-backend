@@ -8,20 +8,20 @@ const loginUser = async (req, res) => {
 
     const user = await User.findOne({ email });
 
-    if (user) {
-      const match = await bcrypt.compare(password, user.password);
-
-      if (match) {
-        const token = jwt.sign({ userID: user._id }, process.env.SECRET, { expiresIn: '24h' });
-        res.status(200).json({ success: true, user, token });
-      } else {
-        res.status(401).json({ success: false, message: 'Error logging in!!!', errorMessage: error.message });
-      }
-    } else {
-      res.status(401).json({ success: false, message: 'No such user exists!!!', errorMessage: error.message });
+    if (!user) {
+      return res.status(401).json({ success: false, message: 'No such user exists!!!' });
     }
+
+    const match = await bcrypt.compare(password, user.password);
+
+    if (!match) {
+      res.status(401).json({ success: false, message: 'Error logging in!!!' });
+    }
+
+    const token = jwt.sign({ userID: user._id }, process.env.SECRET, { expiresIn: '24h' });
+    res.status(200).json({ success: true, user, token });
   } catch (error) {
-    res.json({ success: false, message: 'Some error with login!', errorMessage: error.message });
+    res.json({ success: false, message: 'Some error with login!' });
   }
 };
 

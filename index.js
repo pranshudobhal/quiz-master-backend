@@ -1,9 +1,7 @@
 const express = require('express');
 require('dotenv').config();
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const jwt = require('jsonwebtoken');
 
 const { connectToDatabase } = require('./database/database');
 const { addQuizToCollection } = require('./models/quiz.model');

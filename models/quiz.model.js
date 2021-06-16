@@ -39,6 +39,14 @@ const quizSchema = new Schema({
     type: Number,
     required: true,
   },
+  imageURL: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
   totalPoints: {
     type: Number,
     required: true,

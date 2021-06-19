@@ -5,7 +5,6 @@ const cors = require('cors');
 
 const { connectToDatabase } = require('./database/database');
 const { addQuizToCollection } = require('./models/quiz.model');
-const { addUserToCollection } = require('./models/user.model');
 
 const { verifyAuth } = require('./authentication');
 
@@ -20,25 +19,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-/**
- * TODO:
- * 1. Sign up remaining
- * 2. User remaining - get user data completed
- */
-
-/**
- * DONE:
- * 1. Quiz router
- * 2. Login router
- */
-
 connectToDatabase();
-
-/**
- * Run addQuizToCollection() only when adding new data to quiz JSON
- */
-// addQuizToCollection();
-// addUserToCollection();
 
 app.use('/login', loginRouter);
 app.use('/signup', signupRouter);
